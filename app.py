@@ -4,7 +4,8 @@ from eda import run_eda
 from ml import run_ml
 
 def main():
-    st.title('별의 유형을 예측하는 앱입니다!')
+
+    st.title('**별 유형 예측**')
 
     menu = ['Home', 'EDA', 'ML']
 
