@@ -105,8 +105,6 @@ def run_ml():
 
     st.text('')
     st.text('')
-    
-    st.text('')
     if st.button('예측하기'):
         regressor = joblib.load('./model/regressor.pkl')
 

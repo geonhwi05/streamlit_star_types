@@ -37,7 +37,6 @@ def plot_comparison(x, y):
     pie_title = ['Star color', 'Spectral Class', 'Star type']
     
     if y == "":
-        # y 선택 안했을 때
         if x in pie_title:
             d = df[x].value_counts()
             fig_pie = px.pie(d, values=d.values, names=d.index, hole=0.4, opacity=0.6, title=f"{x} distribution")
@@ -47,9 +46,7 @@ def plot_comparison(x, y):
             fig = px.histogram(df, x=x, title=x)
             st.plotly_chart(fig)
     else:
-        # y 선택 했을 때
         if x in pie_title and y in pie_title:
-            # 둘 다 pie_title에 속하는 경우에는 히스토그램으로 표시
             fig = px.histogram(df, x=x, y=y, title=f"{x} VS {y}")
             st.plotly_chart(fig)
         elif y in pie_title:
@@ -58,7 +55,6 @@ def plot_comparison(x, y):
             fig_pie.update_traces(textposition='outside', textinfo='percent+label')
             st.plotly_chart(fig_pie)
         else:
-            # 다른 경우에는 히스토그램으로 표시
             fig = px.histogram(df, x=x, y=y, title=f"{x} VS {y}")
             st.plotly_chart(fig)
 
@@ -70,21 +66,17 @@ def draw_heatmap_and_pairplot(selected_columns):
 
     selected_df = df[selected_columns]
     
-    # 히트맵 그리기
     fig, ax = plt.subplots(figsize=(12, 8))
     sb.heatmap(selected_df.corr(), annot=True, cmap='Blues', ax=ax)
     ax.set_title("Correlation Heatmap")
     
-    # 페어플롯 그리기
     pairplot = sb.pairplot(selected_df, palette='Greens')
     
-    # 한 번에 표시하기
     st.pyplot(fig)
     st.pyplot(pairplot)
 
 def run_eda():
     st.subheader('탐색적 데이터 분석 (EDA)')
-
     button_key = 'info_button'
     button = st.button('데이터에 대한 설명 보기', key=button_key)
 
@@ -142,8 +134,7 @@ Spectral Class : 스펙트럼 등급\n
         
     
 
-    st.text('')
-    st.text('')
+    st.markdown('------')
     
     st.text('데이터프레임 보기 / 통계치 보기를 할 수 있습니다.')
 
@@ -158,15 +149,14 @@ Spectral Class : 스펙트럼 등급\n
         st.dataframe(df)
     elif choice_radio == radio_menu[1]:
         st.dataframe(df.describe())
-
+    st.markdown('------')
     st.subheader('Hertzsprung-Russell Diagram')
     st.text('')
     st.info('헤르츠스프룽-러셀 도표 : 항성천문학에서 항성의 절대등급과 표면온도의 관계를 나타낸 산점도')
     st.text('이 그래프는 별의 온도와 밝기를 나타내는 공간에 별을 표시합니다!')
     st.plotly_chart(create_hr_diagram(df), use_container_width=True)
 
-    st.text('')
-    st.text('')
+    st.markdown('------')
     st.subheader('최대 / 최소 데이터')
     st.text('')
     st.text('컬럼을 선택하면, 컬럼별 최대/최소 데이터를 보여드립니다.')
@@ -179,8 +169,7 @@ Spectral Class : 스펙트럼 등급\n
     st.info(f'선택하신 {choice_column} 의 최소 데이터는 다음과 같습니다.')
     st.dataframe(df.loc[df[choice_column] == df[choice_column].min(), ])
 
-    st.text('')
-    st.text('')
+    st.markdown('------')
     st.subheader('선택한 컬럼과 Star type 간의 상관 관계를 나타냅니다.')
     st.text('')
     col = ['Temperature (K)', 'Luminosity(L/Lo)', 'Radius(R/Ro)',
@@ -196,9 +185,7 @@ Spectral Class : 스펙트럼 등급\n
     st.plotly_chart(fig2)
 
 
-
-    st.write('')
-    st.write('')
+    st.markdown('------')
     st.subheader('두 컬럼 간의 분포를 비교하여 시각화합니다.')
     st.text('')
     # Streamlit UI
@@ -209,12 +196,7 @@ Spectral Class : 스펙트럼 등급\n
     # 함수 호출
     plot_comparison(selected_column_x, selected_column_y)
 
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
+    st.markdown('------')
 
     st.subheader('선택한 컬럼에 대한 상관 관계를')
     st.subheader('히트맵과 페어플롯을 통해 시각화합니다.') 
