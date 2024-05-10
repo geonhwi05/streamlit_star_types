@@ -127,6 +127,7 @@ NumPy 배열로 변환한 후 reshape하여 1행과 여러 열을 가진 2차원
 
 ## 5. 배포
 AWS의 EC2를 활용하여 배포했습니다.
+http://ec2-43-201-149-238.ap-northeast-2.compute.amazonaws.com:8505/
 
 ### 배포 과정
 1. AWS EC2 인스턴스를 생성했습니다. (Amazon Linux, 키 페어는 ppk)
