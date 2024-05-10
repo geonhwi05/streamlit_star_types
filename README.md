@@ -42,8 +42,14 @@
 ### 4-3. 데이터 가공  
 
 #### 세팅 
-- 아나콘다 프롬프트를 열고 가상 환경을 세팅= >$conda create -n st_310 python=3.10 openssl numpy scipy matplotlib ipython scikit-learn pandas pillow jupyter seaborn
-- 가상 환경을 활성화= > conda activate st_310
+- 아나콘다 프롬프트를 열고 가상 환경을 세팅
+```
+conda create -n st_310 python=3.10 openssl numpy scipy matplotlib ipython scikit-learn pandas pillow jupyter seaborn
+```
+- 가상 환경을 활성화
+```
+conda activate st_310
+```
 - 클론한 디렉토리의 경로로 들어가 주피터 노트북 실행
 
 #### 개발 과정
@@ -58,7 +64,9 @@ matplotlib 을 사용했습니다.
 ##### ML
 - 학습에 사용할 X에서 문자열로 구성된 컬럼의 고유 값 개수를 nunique()로 확인한 결과 3 이상이었기 때문에 적합한 원핫인코딩을 사용하여 인코딩했습니다.
 - 다른 하나의 문자열로 구성된 컬럼은 해당하는 숫자의 값으로 매핑 했습니다.  
-= > X['Spectral Class'].map({'M': 0, 'K': 1, 'G': 2, 'F': 3, 'A': 4, 'B': 5, 'O': 6})
+```
+X['Spectral Class'].map({'M': 0, 'K': 1, 'G': 2, 'F': 3, 'A': 4, 'B': 5, 'O': 6})
+```
 - 학습에 사용할 X와 y를 sklearn의 train_test_split 함수를 사용하여 학습용과 테스트용으로 나눠 데이터를 준비했습니다.
 - 학습은 sklearn의 LogisticRegression을 사용하여 데이터를 기반으로 모델을 학습하고 분류 작업을 수행했습니다.
 - 학습한 모델을 테스트 하고 성능을 확인했습니다.
@@ -70,7 +78,7 @@ matplotlib 을 사용했습니다.
 - 모델과 star_type.ipynb 파일을 커밋한 후 푸시했습니다.
 
 
-#### streamlit 을 이용한 대시보드 개발
+### streamlit 을 이용한 대시보드 개발
 - 대시보드 개발은 Visual Studio Code 에서 작업했습니다.
 - 깃허브 데스크탑을 통해 연동된 레포지토리를 VS Code에서 실행했습니다.
 - 활용한 라이브러리 : streamlit, numpy, pandas, matplotlib, seaborn, plotly, joblib
@@ -92,13 +100,13 @@ matplotlib 을 사용했습니다.
 
 1. streamlit의 button을 활용하여 클릭하면 설명이 나타나고 다시 한 번 클릭하면 닫히는 기능을 구현했습니다.
 이를 위해 조건문을 사용했고 그 안에 데이터에 대한 설명을 작성했습니다.
-2. 데이터 / 통계치 확인:
+2. 데이터 / 통계치 확인:  
 streamlit 의 radio와 dataframe 함수를 활용하여 데이터프레임과 통계치(describe)를 분리하여,
 사용자가 선택한 메뉴에 따라 제공할 수 있도록 구성했습니다.
-3. Hertzsprung-Russell Diagram(헤르츠스프룽-러셀 도표):
+3. Hertzsprung-Russell Diagram(헤르츠스프룽-러셀 도표):  
 plotly 의 scatter를 이용해서 별의 온도와 밝기를 나타내는 산점도를 그려 별의 분포와 유형을 시각화했습니다.
 점은 데이터에 있는 Star color 컬럼의 데이터를 이용해서 온도와 밝기에 따른 별의 색깔을 토대로 산점도를 나타냈습니다.    
-4. 최대/최소 데이터 확인:  
+4. 최대/최소 데이터 확인:    
 streamlit의 selectbox를 이용하여 사용자가 선택한 컬럼에 대한 최대값과 최소값을 포함하는 행을 슬라이싱한 후
 이를 dataframe 함수를 통해 사용자에게 제공했습니다.
 5. 사용자가 선택한 컬럼과 별의 유형 간의 상관 관계 분석:  
@@ -127,6 +135,7 @@ NumPy 배열로 변환한 후 reshape하여 1행과 여러 열을 가진 2차원
 
 ## 5. 배포
 AWS의 EC2를 활용하여 배포했습니다.
+http://ec2-43-201-149-238.ap-northeast-2.compute.amazonaws.com:8505/
 
 ### 배포 과정
 1. AWS EC2 인스턴스를 생성했습니다. (Amazon Linux, 키 페어는 ppk)
