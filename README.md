@@ -70,7 +70,7 @@ matplotlib 을 사용했습니다.
 - 모델과 star_type.ipynb 파일을 커밋한 후 푸시했습니다.
 
 
-#### streamlit 을 이용한 대시보드 개발
+### streamlit 을 이용한 대시보드 개발
 - 대시보드 개발은 Visual Studio Code 에서 작업했습니다.
 - 깃허브 데스크탑을 통해 연동된 레포지토리를 VS Code에서 실행했습니다.
 - 활용한 라이브러리 : streamlit, numpy, pandas, matplotlib, seaborn, plotly, joblib
