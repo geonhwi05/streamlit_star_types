@@ -9,26 +9,28 @@ df = pd.read_csv('./data/star_type_data.csv')
 def create_hr_diagram(df):
     fig = px.scatter(df, x='Temperature (K)', y='Absolute magnitude(Mv)', 
                      color='Star color', title='Hertzsprung-Russell Diagram',
-                     color_discrete_map={'Red': 'red', 
-                    'Blue White': 'lightblue', 
-                    'Blue white': 'deepskyblue',
-                    'Blue white ': 'dodgerblue', 
-                    'Blue White ': 'skyblue', 
-                    'yellow-white': 'lightyellow',
-                    'Yellowish White': 'lemonchiffon', 
-                    'white': 'lightgray',
-                    'yellowish': 'gold',
-                    'Yellowish': 'khaki', 
-                    'Orange': 'darkorange', 
-                    'Whitish': 'lightgray',
-                    'White-Yellow': 'lightgoldenrodyellow', 
-                    'white-Yellow': 'papayawhip',
-                    'Pale yellow orange': 'moccasin',
-                    'Orange-Red': 'orangered', 
-                    'Blue ': 'royalblue', 
-                    'Blue': 'cornflowerblue', 
-                    'Blue-White': 'lightsteelblue',
-                    'yellow white': 'goldenrod'})
+                     color_discrete_map = {
+    'Red': 'red',
+    'Blue White': 'lightblue',
+    'Blue white': 'deepskyblue',
+    'Blue white ': 'dodgerblue',
+    'Blue White ': 'skyblue',
+    'yellow-white': 'lightyellow',
+    'Yellowish White': 'lemonchiffon',
+    'white': 'lightgray',
+    'yellowish': 'gold',
+    'Yellowish': 'khaki',
+    'Orange': 'darkorange',
+    'Whitish': 'lightgray',  # 'White'는 'lightgray'로 매핑합니다.
+    'White-Yellow': 'lightgoldenrodyellow',
+    'white-Yellow': 'lightgray',
+    'Pale yellow orange': 'moccasin',
+    'Orange-Red': 'orangered',
+    'Blue ': 'royalblue',
+    'Blue': 'cornflowerblue',
+    'Blue-White': 'lightsteelblue',
+    'yellow white': 'goldenrod'
+})
     fig.update_traces(marker=dict(size=10))
     fig.update_layout(xaxis_title='Temperature (K)', yaxis_title='Absolute Magnitude (Mv)')
     return fig
